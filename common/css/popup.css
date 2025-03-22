@@ -1,0 +1,161 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+html,
+body {
+   width: var(--width-app);
+   height: var(--height-app);
+}
+
+body {
+   color: var(--color-text-default);
+}
+
+#app-content {
+   height: 100%;
+   background-color: var(--color-background-default);
+}
+
+header {
+   height: var(--height-header);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   box-shadow: var(--shadow-size-md) var(--color-shadow-default);
+   background-color: var(--color-background-default);
+}
+
+main {
+   height: var(--height-main);
+   overflow-x: hidden;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+
+.buttons-action-group {
+   display: flex;
+   align-items: center;
+   gap: 5px;
+}
+
+h1 {
+   text-align: center;
+   font-size: 1.4em;
+   margin: 0;
+   padding: 0;
+   color: rgb(216, 215, 215);
+}
+
+p {
+   color: rgb(216, 215, 215);
+}
+
+button {
+   width: 100%;
+   height: 28px;
+   border: none;
+   color: white;
+   padding: 5px 10px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 12px;
+   font-weight: 700;
+   margin: 0;
+   cursor: pointer;
+   border-radius: 10px;
+   transition: all 0.3s;
+}
+
+.button-1 {
+   background-color: rgb(34, 44, 41);
+   &:hover {
+      background-color: rgb(49, 64, 60);
+   }
+   &:active {
+      background-color: rgb(57, 77, 72);
+      transform: scale(0.95);
+   }
+}
+
+.button-2 {
+   background-color: rgb(4, 58, 42);
+   &:hover {
+      background-color: rgb(2, 41, 29);
+   }
+   &:active {
+      background-color: rgb(3, 43, 31);
+      transform: scale(0.95);
+   }
+}
+
+.button-delete {
+   background-color: #e63946; /* Màu đỏ */
+   color: white;
+   border: none;
+   padding: 5px 12px;
+   font-size: 14px;
+   font-weight: bold;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Hiệu ứng khi di chuột */
+.button-delete:hover {
+   background-color: #d62828; /* Màu đỏ đậm hơn */
+}
+
+/* Hiệu ứng khi nhấn */
+.button-delete:active {
+   background-color: #ba181b; /* Màu đỏ tối */
+   transform: scale(0.95); /* Nhấn xuống một chút */
+}
+
+.box-focus_chat {
+   border-radius: 10px;
+   border: 1px solid rgba(128, 128, 128, 0.5);
+   padding: 16px;
+}
+
+.container-focus_chat {
+   padding: 16px;
+}
+
+/* color: rgb(4, 58, 42); */
+.input-focus_chat {
+   border: 1px solid rgba(128, 128, 128, 0.5);
+   background-color: rgb(34, 44, 41);
+   color: rgb(54, 243, 180);
+   border-radius: 999999px;
+   padding: 5px 10px;
+   margin-top: 5px;
+   width: 100%;
+}
+
+.title-focus_chat {
+   font-size: 14px;
+   font-weight: 700;
+}
+
+.box-button-focus_chat {
+   display: flex;
+   align-items: center;
+   gap: 5px;
+   margin-top: 5px;
+}
+
+
+.button-1:disabled,
+.button-2:disabled {
+   background-color: #999 !important; 
+   color: #ddd;
+   cursor: not-allowed;
+   opacity: 0.6;
+   transform: none;
+   pointer-events: none;
+}
