@@ -131,10 +131,14 @@ button {
    border: 1px solid rgba(128, 128, 128, 0.5);
    background-color: rgb(34, 44, 41);
    color: rgb(54, 243, 180);
-   border-radius: 999999px;
+   border-radius: 20px;
    padding: 5px 10px;
    margin-top: 5px;
    width: 100%;
+   resize: vertical;
+   min-height: 27px; 
+   height: 16px;
+   max-height: 100px;
 }
 
 .title-focus_chat {
@@ -158,4 +162,8 @@ button {
    opacity: 0.6;
    transform: none;
    pointer-events: none;
+}
+
+.status-focus_chat {
+   font-weight: 500;
 }
