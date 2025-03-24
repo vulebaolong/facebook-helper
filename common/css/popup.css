@@ -48,6 +48,18 @@ main {
    display: flex;
    flex-direction: column;
    gap: 20px;
+   position: relative;
+   &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url(../../assets/logo/logo-circle.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: 0.05;
+      z-index: 0;
+   }
 }
 
 .buttons-action-group {
@@ -90,8 +102,8 @@ button {
    gap: 2px;
 
    &.icon {
-      width:30px;
-      height:30px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       background-color: rgb(34, 44, 41);
       &:hover {
@@ -156,6 +168,7 @@ button {
 }
 
 .container-focus_chat {
+   position: relative;
    padding: 16px;
 }
 

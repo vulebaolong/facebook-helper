@@ -3,7 +3,7 @@
    "version": "1.0",
    "manifest_version": 3,
    "description": "Facebook Helper",
-   "permissions": ["tabs", "storage", "scripting"],
+   "permissions": ["tabs", "storage"],
    "background": {
       "service_worker": "src/background.js",
       "type": "module"

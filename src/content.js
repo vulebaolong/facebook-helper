@@ -70,7 +70,7 @@ function filterChats(arrTitileFilter, listEl) {
    if (!Array.isArray(arrTitileFilter)) return;
    Array.from(listEl.children).forEach((chat) => {
       const textContent = chat.querySelector(`span`)?.textContent || chat.textContent || "";
-      const isMatch = arrTitileFilter.some((title) => textContent.includes(title));
+      const isMatch = arrTitileFilter.some((title) => textContent.toLowerCase().includes(title.toLowerCase()));
       applyChatStyle(chat, isMatch);
    });
 }
