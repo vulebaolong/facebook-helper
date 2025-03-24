@@ -1,3 +1,5 @@
+// zip -r ../YourExtension.zip . -x "*.DS_Store"
+
 console.log(`Content runed successfully`);
 let observer = null;
 
