@@ -1,7 +1,10 @@
+/* rgb(5 58 42) */
+/* rgb(5 128 87) */
+
 :root {
    --height-app: 600px;
    --width-app: 357px;
-   --height-header: 70px;
+   --height-header: 60px;
    --height-main: calc(var(--height-app) - var(--height-header));
 
    --shadow-size-xs: 0 2px 4px 0;
@@ -162,4 +165,13 @@
    --color-shadow-default: #00000066;
    --color-shadow-primary: #43aefc33;
    --color-shadow-error: #ff758466;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: "Baloo 2", sans-serif;
+   font-optical-sizing: auto;
+   font-style: normal;
 }
