@@ -10,9 +10,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
          await startFiltering(message.arrTitileFilter);
          sendResponse(!!observer);
       },
-      "stop-filter": () => {
+      "stop-filter": async () => {
          disconnectObserver();
-         resetFilteredChats();
+         await resetFilteredChats();
          chrome.storage.local.set({ isChatFilterRunning: false });
          sendResponse(!!observer);
       },
@@ -50,7 +50,7 @@ async function startFiltering(arrTitileFilter) {
 }
 
 async function initObserverWithKeyword(arrTitileFilter) {
-   const listEl = getElementList();
+   const listEl = await getElementList();
    if (!listEl) return false;
 
    filterChats(arrTitileFilter, listEl);
@@ -75,8 +75,8 @@ function filterChats(arrTitileFilter, listEl) {
    });
 }
 
-function resetFilteredChats() {
-   const listEl = getElementList();
+async function resetFilteredChats() {
+   const listEl = await getElementList();
    if (!listEl) return;
 
    Array.from(listEl.children).forEach((chat) => {
@@ -105,9 +105,29 @@ function disconnectObserver() {
    }
 }
 
-function getElementList() {
-   const containerChat = document.querySelector('div[aria-label="Đoạn chat"]');
+async function getElementList() {
+   const containerChat = await waitForElement(`div[aria-label="Đoạn chat"]`);
    if (!containerChat) return false;
    const listEl = containerChat.querySelector('div[role="list"]');
    return listEl || false;
+}
+
+function waitForElement(selector) {
+   return new Promise((resolve) => {
+      const existing = document.querySelector(selector);
+      if (existing) return resolve(existing);
+
+      const observer = new MutationObserver(() => {
+         const el = document.querySelector(selector);
+         if (el) {
+            observer.disconnect();
+            resolve(el);
+         }
+      });
+
+      observer.observe(document.body, {
+         childList: true,
+         subtree: true,
+      });
+   });
 }
