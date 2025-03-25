@@ -71,16 +71,10 @@ async function initObserverWithKeyword(arrTitileFilter) {
 function filterChats(arrTitileFilter, listEl) {
    if (!Array.isArray(arrTitileFilter)) return;
    Array.from(listEl.children).forEach((chat) => {
-      const textContent = chat.querySelector(`span`)?.textContent || chat.textContent || "";
+      const textContent = chat.textContent || "";
       const textContentLower = textContent?.toLowerCase();
-
       const isMatch = arrTitileFilter.some((title) => {
          const titleLower = title?.toLowerCase();
-         console.log({
-            titleLower,
-            textContentLower,
-            isMatch: textContentLower.includes(titleLower),
-         });
          return textContentLower.includes(titleLower);
       });
       applyChatStyle(chat, isMatch);
