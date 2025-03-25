@@ -1,5 +1,8 @@
 // zip -r ../YourExtension.zip . -x "*.DS_Store"
 
+// const selectorContainerChat = `div[aria-label="Chats"]`
+const selectorListChat = `div[role="list"]`
+
 console.log(`Content runed successfully`);
 let observer = null;
 
@@ -112,9 +115,7 @@ function disconnectObserver() {
 }
 
 async function getElementList() {
-   const containerChat = await waitForElement(`div[aria-label="Đoạn chat"]`);
-   if (!containerChat) return false;
-   const listEl = containerChat.querySelector('div[role="list"]');
+   const listEl = await waitForElement(selectorListChat);
    return listEl || false;
 }
 
