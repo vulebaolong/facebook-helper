@@ -1,7 +1,25 @@
 // zip -r ../YourExtension.zip . -x "*.DS_Store"
 
-// const selectorContainerChat = `div[aria-label="Chats"]`
-const selectorListChat = `div[role="list"]`
+const arrLabelContainerChat = [
+   "Chats", // English
+   "Đoạn chat", // Tiếng Việt
+   "聊天室", // Chinese (Simplified)
+   "Chats", // Español
+   "Bate-papos", // Português (Brasil)
+   "Sheekeysiyo", // Português (Brasil)
+   "Conversaciones", // Spanish
+   "Discussions", // French
+   "Chat", // Italian
+   "チャット", // Japanese
+   "채팅", // Korean
+   "Sohbetler", // Turkish
+   "Czat", // Polish
+   "Чаты", // Russian
+   "Rozmowy", // Czech
+   "Chatear", // Catalan
+   "Mensagens", // Brazilian Portuguese (common variation)
+];
+const selectorListChat = `div[role="list"]`;
 
 console.log(`Content runed successfully`);
 let observer = null;
@@ -115,17 +133,39 @@ function disconnectObserver() {
 }
 
 async function getElementList() {
-   const listEl = await waitForElement(selectorListChat);
-   return listEl || false;
+   const containerChatEl = await waitForElement(arrLabelContainerChat);
+   const listChatEl = findListChat(containerChatEl);
+   return listChatEl || false;
 }
 
-function waitForElement(selector) {
+function findContainerChat(arrLabelContainerChat) {
+   for (const label of arrLabelContainerChat) {
+      const el = document.querySelector(`div[aria-label="${label}"]`);
+      if (el) return el;
+   }
+   return null;
+}
+
+function findListChat(containerChatEl) {
+   const descendants = containerChatEl.querySelectorAll("*");
+
+   for (const el of descendants) {
+      const style = window.getComputedStyle(el);
+      if (style.overflowY === "scroll" || style.overflowY === "auto") {
+         const child = el.children[1].children[0];
+         if (child) return child;
+      }
+   }
+   return null;
+}
+
+function waitForElement(arrLabelContainerChat) {
    return new Promise((resolve) => {
-      const existing = document.querySelector(selector);
+      const existing = findContainerChat(arrLabelContainerChat);
       if (existing) return resolve(existing);
 
       const observer = new MutationObserver(() => {
-         const el = document.querySelector(selector);
+         const el = findContainerChat(arrLabelContainerChat);
          if (el) {
             observer.disconnect();
             resolve(el);
