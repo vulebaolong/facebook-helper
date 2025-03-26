@@ -1,4 +1,4 @@
-// zip -r ../YourExtension.zip . -x "*.DS_Store"
+// zip -r ../facebook-helper.zip . -x "*.DS_Store"
 
 const arrLabelContainerChat = [
    "Chats", // English
